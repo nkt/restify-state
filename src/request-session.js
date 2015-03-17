@@ -3,7 +3,9 @@ class RequestSession {
     Object.defineProperty(this, 'id', {
       value: id
     });
-    Object.assign(this, data);
+    Object.keys(data).forEach((key) => {
+        this[key] = data[key];
+    });
   }
 }
 
