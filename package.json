@@ -1,6 +1,6 @@
 {
   "name": "restify-state",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Provide state (cookies, session) for restify framework",
   "keywords": [
     "restify",

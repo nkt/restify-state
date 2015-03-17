@@ -4,7 +4,7 @@ class RequestSession {
       value: id
     });
 
-    if (typeof data === 'object') {
+    if (typeof data === 'object' && data !== null) {
         Object.keys(data).forEach((key) => {
             this[key] = data[key];
         });
