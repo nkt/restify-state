@@ -1,6 +1,6 @@
 {
   "name": "restify-state",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Provide state (cookies, session) for restify framework",
   "keywords": [
     "restify",
@@ -13,7 +13,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "babel src -d lib -L all",
     "prepublish": "npm run build"
   },
   "dependencies": {
