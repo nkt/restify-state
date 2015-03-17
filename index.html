@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Restify state by nkt</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/nkt/restify-state">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/nkt/restify-state/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/nkt/restify-state/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Restify state</h1>
+          <p></p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/nkt">nkt</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a id="restify-state" class="anchor" href="#restify-state" aria-hidden="true"><span class="octicon octicon-link"></span></a>Restify state</h1>
+
+<p>Module provides middlewares for saving state between requests for restify.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<pre><code>npm install restify-state
+</code></pre>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-js"><pre><span class="pl-s">const</span> restify <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>restify<span class="pl-pds">'</span></span>);
+<span class="pl-s">const</span> restifyState <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>restify-state<span class="pl-pds">'</span></span>);
+
+<span class="pl-s">let</span> server <span class="pl-k">=</span> restify.createServer({
+  name<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>app<span class="pl-pds">'</span></span>
+});
+
+server.use(restifyState.cookieParser());
+server.use(restifyState.session({ <span class="pl-c">// default</span>
+  name<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>user_session<span class="pl-pds">'</span></span>,
+  proxy<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+  store<span class="pl-k">:</span> <span class="pl-c1">null</span>,
+  path<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>/<span class="pl-pds">'</span></span>,
+  domain<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+  lifetime<span class="pl-k">:</span> <span class="pl-c1">30</span> <span class="pl-k">*</span> <span class="pl-c1">24</span> <span class="pl-k">*</span> <span class="pl-c1">60</span> <span class="pl-k">*</span> <span class="pl-c1">60</span>,
+  secure<span class="pl-k">:</span> <span class="pl-c1">false</span>
+}));
+
+
+server.get(<span class="pl-s1"><span class="pl-pds">'</span>/counter<span class="pl-pds">'</span></span>, (req, res) <span class="pl-k">=&gt;</span> {
+  <span class="pl-k">if</span> (req.session.counter) {
+    req.session.counter<span class="pl-k">++</span>;
+  } <span class="pl-k">else</span> {
+    req.session.counter <span class="pl-k">=</span> <span class="pl-c1">1</span>;
+  }
+
+  res.<span class="pl-s3">send</span>({
+    counter<span class="pl-k">:</span> req.session.counter
+  });
+});</pre></div>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>MIT</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
