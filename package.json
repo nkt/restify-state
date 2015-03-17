@@ -1,0 +1,27 @@
+{
+  "name": "restify-state",
+  "version": "0.1.0",
+  "description": "Provide state (cookies, session) for restify framework",
+  "keywords": [
+    "restify",
+    "cookies",
+    "session"
+  ],
+  "main": "lib/index.js",
+  "directories": {
+    "src": "src",
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "babel src -d lib",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {
+    "bluebird": "*",
+    "cookie": "~0.1",
+    "lodash.defaults": "~3.0"
+  },
+  "devDependencies": {
+    "babel": "~4.7"
+  }
+}
