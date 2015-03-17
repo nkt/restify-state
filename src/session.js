@@ -23,6 +23,7 @@ function generateSessionId(req) {
  * @param {string} [options.path] The session cookie path.
  * @param {string} [options.domain] The session cookie domain.
  * @param {number} [options.lifetime] The session cookie lifetime in seconds.
+ * @param {number} [options.secure] The session cookie secure.
  * @returns {Function}
  */
 function session(options) {
@@ -32,14 +33,16 @@ function session(options) {
     store: null,
     path: '/',
     domain: '',
-    lifetime: 30 * 24 * 60 * 60
+    lifetime: 30 * 24 * 60 * 60,
+    secure: false
   }, options);
 
   const cookieOptions = {
     path: config.path,
     domain: config.domain,
     maxAge: config.lifetime,
-    httpOnly: true
+    httpOnly: true,
+    secure: config.secure
   };
 
   const store = config.store || new MemoryStore();
