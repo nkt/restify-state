@@ -18,8 +18,10 @@ class RedisStore extends Store {
    * @returns {Promise}
    */
   set(id, data) {
+    const key = `${this.prefix}${id}`;
+
     return Store.serialize(data).then((data) => {
-      return this.client.setAsync(id, data);
+      return this.client.setAsync(key, data);
     });
   }
 
@@ -29,7 +31,9 @@ class RedisStore extends Store {
    * @returns {Promise}
    */
   get(id) {
-    return this.client.getAsync(id).then((data) => {
+    const key = `${this.prefix}${id}`;
+
+    return this.client.getAsync(key).then((data) => {
       return Store.deserialize(data);
     });
   }
@@ -40,7 +44,9 @@ class RedisStore extends Store {
    * @returns {Promise}
    */
   destroy(id) {
-    return this.client.delAsync(id);
+    const key = `${this.prefix}${id}`;
+
+    return this.client.delAsync(key);
   }
 }
 

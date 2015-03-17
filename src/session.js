@@ -27,7 +27,7 @@ function generateSessionId(req) {
  * @returns {Function}
  */
 function session(options) {
-  const config = defaults({
+  const config = defaults(options, {
     name: 'user_session',
     proxy: false,
     store: null,
@@ -35,7 +35,7 @@ function session(options) {
     domain: '',
     lifetime: 30 * 24 * 60 * 60,
     secure: false
-  }, options);
+  });
 
   const cookieOptions = {
     path: config.path,
