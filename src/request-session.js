@@ -3,9 +3,12 @@ class RequestSession {
     Object.defineProperty(this, 'id', {
       value: id
     });
-    Object.keys(data).forEach((key) => {
-        this[key] = data[key];
-    });
+
+    if (typeof data === 'object') {
+        Object.keys(data).forEach((key) => {
+            this[key] = data[key];
+        });
+    }
   }
 }
 
